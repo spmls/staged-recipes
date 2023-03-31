@@ -1,0 +1,48 @@
+{% set name = "corescan_plotting" %}
+{% set version = "1.0" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/corescan_plotting-{{ version }}.tar.gz
+  sha256: de514c5ff7e3d6977c305387b03dbfd610d833531edc0e3e88fc82377a701f1d
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - numpy
+    - matplotlib
+    - scikit-image
+    - opencv
+    - tifffile
+    - exifread
+    - pandas
+
+test:
+  imports:
+    - corescan_plotting
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://pypi.org/project/corescan-plotting/
+  summary: Python tools for plotting scanned core data from the USGS Pacific Coastal and Marine Science Center
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - Seanpaul
